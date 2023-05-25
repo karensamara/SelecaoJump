@@ -5,13 +5,13 @@ import { Processo } from '../../types/Processo';
 @Component({
   selector: 'app-analysis',
   templateUrl: './analysis.component.html',
-  styleUrls: ['./analysis.component.scss']
+  styleUrls: ['./analysis.component.scss'],
 })
 export class AnalysisComponent {
   selectedMovimento: string = 'Expedição de movimento';
   processoList: Processo[] = [];
 
-  constructor() {
+  constructor(private facade: AnalysisFacade) {
     facade.getProcessoData().subscribe((processoData) => {
       this.processoList = processoData;
     });

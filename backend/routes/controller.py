@@ -4,6 +4,7 @@ START_TIMESTAMP = 'start_timestamp'
 END_TIMESTAMP = 'time:timestamp'
 CASE_ID = 'case:concept:name'
 ACTIVITY = 'concept:name'
+DURATION = 'duration'
 
 class Core:
     def __init__(self) -> None:
@@ -14,6 +15,8 @@ class Core:
         df = pandas.read_csv(file_path, encoding = "utf-8",
                              parse_dates=['Start', 'End'],
                              dtype={ 'NPU': str })
+        df[DURATION] = df['End'] - df["Start"]
+
         self.log = df.rename(columns={
             "Start": START_TIMESTAMP,
             "Movimento": ACTIVITY,

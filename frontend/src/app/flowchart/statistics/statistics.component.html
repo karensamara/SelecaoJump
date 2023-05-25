@@ -1,0 +1,64 @@
+<div id="app-flowchart-page">
+  <table class="statistics-board">
+    <td class="statistics-item divider">
+      <tr class="statistics-name">
+        Quantidade de Processos
+      </tr>
+      <tr class="statistics-data">
+        {{
+          statistics.casesCount
+        }}
+      </tr>
+    </td>
+    <td class="statistics-item divider">
+      <tr class="statistics-name">
+        Quantidade de Movimentos
+      </tr>
+      <tr class="statistics-data">
+        {{
+          statistics.movimentosCount
+        }}
+      </tr>
+    </td>
+    <td class="statistics-item divider">
+      <tr class="statistics-name">
+        Média da duração dos processos
+      </tr>
+      <tr class="statistics-data">
+        {{
+          avgCaseDurationMonths
+        }}
+        meses,
+        {{
+          avgCaseDurationHours
+        }}
+        horas
+      </tr>
+    </td>
+    <td class="statistics-item divider">
+      <tr class="statistics-name">
+        Média da duração dos movimentos
+      </tr>
+      <tr class="statistics-data">
+        {{
+          avgMovimentoDurationMonths
+        }}
+        meses,
+        {{
+          avgMovimentoDurationHours
+        }}
+        horas
+      </tr>
+    </td>
+    <td class="statistics-item">
+      <tr class="statistics-name">
+        Média de movimentos por processo
+      </tr>
+      <tr class="statistics-data">
+        {{
+          statistics.avgMovimentosPerCase
+        }}
+      </tr>
+    </td>
+  </table>
+</div>

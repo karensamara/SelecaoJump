@@ -1,12 +1,34 @@
-<mat-toolbar id="app-header">  
-    <img class="logo-image" src="/assets/logo"
-         alt="A logo do JuMP acompanhado pelo nome em verde e azul">
-    <span>
-        <mat-icon> account_tree </mat-icon>
-        <p> Fluxograma </p>
+<mat-toolbar id="app-header">
+  <button class="toggle-button" (click)="toggleNav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <img
+    class="logo-image"
+    src="/assets/logo.webp"
+    alt="A logo do JuMP acompanhado pelo nome em verde e azul"
+  />
+  <div class="navbar-content" *ngIf="navVisible">
+    <!-- <div class="navbar-div"> -->
+    <span [routerLink]="['/flowchart/']">
+      <mat-icon>account_tree</mat-icon>
+      <p>Fluxograma</p>
     </span>
     <span [routerLink]="['/analysis/']">
-        <mat-icon> cases </mat-icon>
-        <p> Análise de processos </p>
+      <mat-icon>cases</mat-icon>
+      <p>Análise de processos</p>
     </span>
+    <!-- </div> -->
+  </div>
+  <div class="navbar-content-bigger">
+    <span [routerLink]="['/flowchart/']">
+      <mat-icon>account_tree</mat-icon>
+      <p>Fluxograma</p>
+    </span>
+    <span [routerLink]="['/analysis/']">
+      <mat-icon>cases</mat-icon>
+      <p>Análise de processos</p>
+    </span>
+  </div>
 </mat-toolbar>
+<!-- ``` create another mat-toolbar with the contents button navbar-content and logo,
+easy peasy ``` -->
