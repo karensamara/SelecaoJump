@@ -2,6 +2,8 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+declare var $: any; // Declare jQuery
+import { from } from 'rxjs';
 
 import * as d3 from 'd3';
 
@@ -17,23 +19,36 @@ export class FlowchartComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSVGImage();
+    const initDragging = () => {
+      $('#svg-container').draggable();
+    };
+    from(this.getSVGImage()).subscribe(() => {
+      initDragging();
+    });
+    // Call the initDragging function after the SVG image is loaded
+    // this.getSVGImage().then(() => {
+    //   initDragging();
+    // });
   }
 
-  getSVGImage(): void {
-    this.http
-      .get(`${environment.apiUrl}/api/visualization/image/`, {
-        responseType: 'text',
-      })
-      .subscribe((svgData: string) => {
-        // console.log(svgData);
-        const sanitizedSVG = this.sanitizer.bypassSecurityTrustHtml(svgData);
-        this.svgImage = sanitizedSVG;
+  getSVGImage(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(`${environment.apiUrl}/api/visualization/image/`, {
+          responseType: 'text',
+        })
+        .subscribe((svgData: string) => {
+          // console.log(svgData);
+          const sanitizedSVG = this.sanitizer.bypassSecurityTrustHtml(svgData);
+          this.svgImage = sanitizedSVG;
 
-        // Call addInfoIconToNodes function after setting the SVG image
-        setTimeout(() => {
-          this.addInfoIconToNodes();
-        }, 0);
-      });
+          // Call addInfoIconToNodes function after setting the SVG image
+          setTimeout(() => {
+            this.addInfoIconToNodes();
+          }, 0);
+          resolve();
+        });
+    });
   }
 
   addInfoIconToNodes(): void {
