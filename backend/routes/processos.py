@@ -29,10 +29,6 @@ async def get_log_stats():
     }
     """
     df = core_instance.log.copy()
-    # df[END_TIMESTAMP] = pd.to_datetime(df[END_TIMESTAMP], format='%Y-%m-%d %H:%M:%S')
-    # df[START_TIMESTAMP] = pd.to_datetime(df[START_TIMESTAMP], format='%Y-%m-%d %H:%M:%S')
-    
-    # df['duration'] = df[END_TIMESTAMP] - df[START_TIMESTAMP]
 
     movimentos_count = len(df)
     cases_count = len(df[CASE_ID].unique())

@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-declare var $: any; // Declare jQuery
+declare var $: any;
 import { from } from 'rxjs';
 
 import * as d3 from 'd3';
@@ -25,10 +25,6 @@ export class FlowchartComponent implements OnInit {
     from(this.getSVGImage()).subscribe(() => {
       initDragging();
     });
-    // Call the initDragging function after the SVG image is loaded
-    // this.getSVGImage().then(() => {
-    //   initDragging();
-    // });
   }
 
   getSVGImage(): Promise<void> {
@@ -42,7 +38,6 @@ export class FlowchartComponent implements OnInit {
           const sanitizedSVG = this.sanitizer.bypassSecurityTrustHtml(svgData);
           this.svgImage = sanitizedSVG;
 
-          // Call addInfoIconToNodes function after setting the SVG image
           setTimeout(() => {
             this.addInfoIconToNodes();
           }, 0);
@@ -52,11 +47,9 @@ export class FlowchartComponent implements OnInit {
   }
 
   addInfoIconToNodes(): void {
-    // Select the nodes in your flowchart using appropriate D3 selector
-    const nodes = d3.selectAll('.node'); // Adjust the selector based on your SVG structure
+    const nodes = d3.selectAll('.node');
     console.log(nodes);
 
-    // Add info icon to each node
     nodes.each(function () {
       const node = d3.select(this);
 
@@ -75,8 +68,8 @@ export class FlowchartComponent implements OnInit {
         .append('circle')
         .attr('r', 8)
         .style('fill', '#3944bc')
-        .style('stroke', 'white') // Add border color
-        .style('stroke-width', '1px'); // Add border width
+        .style('stroke', 'white')
+        .style('stroke-width', '1px');
       iconGroup
         .append('text')
         .attr('x', 0)
@@ -101,11 +94,8 @@ export class FlowchartComponent implements OnInit {
             .style('filter', 'none');
         });
 
-      // Check if the values are valid numbers
       function handleClick() {
-        // Handle the click event here
-        console.log('Icon clicked!');
-        // Add your custom logic for handling the click event
+        console.log('clicou');
       }
     });
   }

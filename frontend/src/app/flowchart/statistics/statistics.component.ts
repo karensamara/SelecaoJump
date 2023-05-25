@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment.development';
   styleUrls: ['./statistics.component.scss'],
 })
 export class StatisticsComponent {
-  statistics: any = {}; // Object to store the retrieved statistics
+  statistics: any = {};
   avgCaseDurationMonths: number = 0;
   avgCaseDurationHours: number = 0;
   avgMovimentoDurationMonths: number = 0;
