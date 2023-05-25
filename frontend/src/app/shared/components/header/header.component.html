@@ -8,18 +8,6 @@
     alt="A logo do JuMP acompanhado pelo nome em verde e azul"
   />
   <div class="navbar-content" *ngIf="navVisible">
-    <!-- <div class="navbar-div"> -->
-    <span [routerLink]="['/flowchart/']">
-      <mat-icon>account_tree</mat-icon>
-      <p>Fluxograma</p>
-    </span>
-    <span [routerLink]="['/analysis/']">
-      <mat-icon>cases</mat-icon>
-      <p>Análise de processos</p>
-    </span>
-    <!-- </div> -->
-  </div>
-  <div class="navbar-content-bigger">
     <span [routerLink]="['/flowchart/']">
       <mat-icon>account_tree</mat-icon>
       <p>Fluxograma</p>
@@ -30,5 +18,20 @@
     </span>
   </div>
 </mat-toolbar>
-<!-- ``` create another mat-toolbar with the contents button navbar-content and logo,
-easy peasy ``` -->
+<mat-toolbar id="app-header-bigger">
+  <img
+    class="logo-image"
+    src="/assets/logo.webp"
+    alt="A logo do JuMP acompanhado pelo nome em verde e azul"
+  />
+  <div class="navbar-content">
+    <span [routerLink]="['/flowchart/']">
+      <mat-icon>account_tree</mat-icon>
+      <p>Fluxograma</p>
+    </span>
+    <span [routerLink]="['/analysis/']">
+      <mat-icon>cases</mat-icon>
+      <p>Análise de processos</p>
+    </span>
+  </div>
+</mat-toolbar>

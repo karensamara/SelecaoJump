@@ -1,5 +1,7 @@
 #app-flowchart-page {
   margin-top: 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 table {
@@ -7,15 +9,17 @@ table {
   flex-wrap: wrap;
   justify-content: center;
   align-items: stretch;
-  width: 100%;
+  width: auto;
 
-  border-radius: 5px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  // border-radius: 5px;
+  // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 table td {
   padding: 2rem;
+  margin: 0.5rem;
   border: 1px solid #ddd;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 table td:hover {
@@ -34,6 +38,17 @@ table td:hover {
   font-size: 1.5rem;
   color: #6a6a6a;
   font-weight: 700;
+}
+
+@media (min-width: 1345px) {
+  table {
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  }
+  table td {
+    margin: 0;
+    box-shadow: none;
+  }
 }
 
 // .statistics-board {
