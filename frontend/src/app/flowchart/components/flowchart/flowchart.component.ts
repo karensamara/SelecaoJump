@@ -6,6 +6,8 @@ declare var $: any;
 import { from } from 'rxjs';
 
 import * as d3 from 'd3';
+import { ProcessSharingService } from 'src/app/shared/services/process-sharing.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flowchart',
@@ -15,7 +17,12 @@ import * as d3 from 'd3';
 export class FlowchartComponent implements OnInit {
   svgImage: SafeHtml = '';
 
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
+  constructor(
+    private http: HttpClient,
+    private sanitizer: DomSanitizer,
+    private dataSharingService: ProcessSharingService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     const initDragging = () => {
@@ -47,9 +54,20 @@ export class FlowchartComponent implements OnInit {
   addInfoIconToNodes(): void {
     const nodes = d3.selectAll('.node');
     console.log(nodes);
-
+    const componentInstance = this;
     nodes.each(function () {
-      const node = d3.select(this);
+      const node = d3
+        .select(this)
+        .on('click', function () {
+          const gElement = node.select('g');
+          const textElement = gElement.select('text');
+          const value = textElement.text().trim();
+          componentInstance.dataSharingService.setResponseValue(value);
+          componentInstance.router.navigate(['/analysis']); // Replace '/target-route' with the desired route
+
+          console.log(value);
+        })
+        .style('cursor', 'pointer');
 
       const iconGroup = node
         .append('g')
@@ -59,7 +77,10 @@ export class FlowchartComponent implements OnInit {
           const y = parseFloat(node.select('text').attr('y'));
           return `translate(${x + -60},${y + 4})`;
         })
-        .on('click', handleClick)
+        .on('click', function () {
+          console.log('clicked');
+          componentInstance.dataSharingService.setResponseValue('test');
+        })
         .style('cursor', 'pointer');
 
       const circle = iconGroup
@@ -92,9 +113,9 @@ export class FlowchartComponent implements OnInit {
             .style('filter', 'none');
         });
 
-      function handleClick() {
-        console.log('clicou');
-      }
+      // function handleClick() {
+      //   this.dataSharingService.setResponseValue('clicked');
+      // }
     });
   }
 }
