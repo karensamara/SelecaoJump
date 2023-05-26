@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FlowchartPageComponent } from './flowchart-page/flowchart-page.component';
+import { FlowchartPageComponent } from './pages/flowchart-page/flowchart-page.component';
 
 const routes: Routes = [
   { path: 'flowchart', component: FlowchartPageComponent },

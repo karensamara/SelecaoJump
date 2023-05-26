@@ -18,7 +18,6 @@ export class FlowchartComponent implements OnInit {
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
-    this.getSVGImage();
     const initDragging = () => {
       $('#svg-container').draggable();
     };
@@ -34,7 +33,6 @@ export class FlowchartComponent implements OnInit {
           responseType: 'text',
         })
         .subscribe((svgData: string) => {
-          // console.log(svgData);
           const sanitizedSVG = this.sanitizer.bypassSecurityTrustHtml(svgData);
           this.svgImage = sanitizedSVG;
 
