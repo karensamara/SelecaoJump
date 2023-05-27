@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Processo } from '../types/Processo';
-import { of } from 'rxjs';
+import { map, of } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable()
 export class AnalysisApi {
-
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient) {}
 
   public fetchProcessosData() {
     return of([
@@ -40,10 +40,26 @@ export class AnalysisApi {
         totalMovimentos: 6,
         totalDuration: 60,
       },
-    ] as Processo[])
+    ] as Processo[]);
   }
 
   public fetchProcessosDataByName(name: string) {
-    return this.http.get<Processo[]>(`/api/processos/${name}/`);
+    return this.http
+      .post<any>(`${environment.apiUrl}/api/processos/`, {
+        movimento: name,
+      })
+      .pipe(
+        map((response: any) => {
+          const transformedData: Processo[] = response.cases.map(
+            (caseItem: any) => ({
+              NPU: caseItem.NPU,
+              totalMovimentos: caseItem.movimentosCount,
+              totalDuration: caseItem.duration,
+              movimentos: caseItem.pinnedMovimentoCount,
+            })
+          );
+          return transformedData;
+        })
+      );
   }
 }

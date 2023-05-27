@@ -14,12 +14,4 @@ export class ProcessSharingService {
   getMovimentoValue() {
     return this.movimento;
   }
-
-  setResponseValue(response: any) {
-    this.response = response;
-  }
-
-  getResponseValue() {
-    return this.response;
-  }
 }

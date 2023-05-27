@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -62,9 +62,9 @@ export class FlowchartComponent implements OnInit {
           const gElement = node.select('g');
           const textElement = gElement.select('text');
           const value = textElement.text().trim();
-          componentInstance.dataSharingService.setResponseValue(value);
-          componentInstance.router.navigate(['/analysis']); // Replace '/target-route' with the desired route
+          componentInstance.dataSharingService.setMovimentoValue(value);
 
+          componentInstance.router.navigate(['/analysis']);
           console.log(value);
         })
         .style('cursor', 'pointer');
@@ -79,7 +79,7 @@ export class FlowchartComponent implements OnInit {
         })
         .on('click', function () {
           console.log('clicked');
-          componentInstance.dataSharingService.setResponseValue('test');
+          // componentInstance.dataSharingService.setResponseValue('test');
         })
         .style('cursor', 'pointer');
 
@@ -112,10 +112,6 @@ export class FlowchartComponent implements OnInit {
             .style('stroke', '#ffffff')
             .style('filter', 'none');
         });
-
-      // function handleClick() {
-      //   this.dataSharingService.setResponseValue('clicked');
-      // }
     });
   }
 }

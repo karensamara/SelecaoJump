@@ -9,8 +9,9 @@ export class AnalysisState {
   public getProcessoData() {
     return this.processoData.asObservable();
   }
-  
+
   public setProcessoData(processoData: Processo[]) {
+    console.log('state', processoData);
     this.processoData.next(processoData);
   }
 }
