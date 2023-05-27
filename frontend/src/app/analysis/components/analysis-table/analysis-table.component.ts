@@ -1,11 +1,11 @@
-import { 
-  Input, 
-  Component, 
+import {
+  Input,
+  Component,
   ChangeDetectionStrategy,
   ViewChild,
   AfterViewInit,
   OnInit,
-  OnChanges, 
+  OnChanges,
 } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -18,10 +18,15 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./analysis-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AnalysisTableComponent implements OnInit, AfterViewInit, OnChanges {
+export class AnalysisTableComponent
+  implements OnInit, AfterViewInit, OnChanges
+{
   @Input() data: readonly Processo[] = [];
   @Input() displayedColumns: string[] = [
-    'NPU', 'movimentos', 'totalMovimentos', 'duration'
+    'NPU',
+    'movimentos',
+    'totalMovimentos',
+    'duration',
   ];
 
   dataSource!: MatTableDataSource<Processo>;
@@ -36,13 +41,15 @@ export class AnalysisTableComponent implements OnInit, AfterViewInit, OnChanges 
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     // TODO: Fix paginator
     // TODO: Sort not working on movimentos/totalMovimentos
   }
 
-  ngOnChanges(): void {    
+  ngOnChanges(): void {
     const data = Object.assign([], this.data);
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 }

@@ -62,4 +62,31 @@ export class AnalysisApi {
         })
       );
   }
+
+  // public fetchProcessosDataByName2(
+  //   name: string,
+  //   pageSize: number,
+  //   pageNumber: number
+  // ) {
+  //   const offset = pageSize * (pageNumber - 1);
+  //   return this.http
+  //     .post<any>(`${environment.apiUrl}/api/processos/`, {
+  //       movimento: name,
+  //       offset: offset,
+  //       limit: pageSize,
+  //     })
+  //     .pipe(
+  //       map((response: any) => {
+  //         const transformedData: Processo[] = response.cases.map(
+  //           (caseItem: any) => ({
+  //             NPU: caseItem.NPU,
+  //             totalMovimentos: caseItem.movimentosCount,
+  //             totalDuration: caseItem.duration,
+  //             movimentos: caseItem.pinnedMovimentoCount,
+  //           })
+  //         );
+  //         return transformedData;
+  //       })
+  //     );
+  // }
 }
