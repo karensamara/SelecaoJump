@@ -12,18 +12,16 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   providers: [
     AnalysisState,
     AnalysisApi,
     AnalysisFacade,
-    analysisInitializerProvider
+    analysisInitializerProvider,
   ],
-  declarations: [
-    AnalysisComponent,
-    AnalysisTableComponent,
-  ],
+  declarations: [AnalysisComponent, AnalysisTableComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -32,6 +30,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatTableModule,
     MatPaginatorModule,
     AnalysisRoutingModule,
-  ]
+    MatProgressSpinnerModule,
+  ],
 })
-export class AnalysisModule { }
+export class AnalysisModule {}

@@ -1,12 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Processo } from '../types/Processo';
-import { map, of } from 'rxjs';
+import { map, of, finalize } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 
 @Injectable()
 export class AnalysisApi {
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private loadingService: LoadingService
+  ) {}
 
   public fetchProcessosData() {
     return of([
@@ -44,6 +48,7 @@ export class AnalysisApi {
   }
 
   public fetchProcessosDataByName(name: string) {
+    this.loadingService.setLoadingState(true);
     return this.http
       .post<any>(`${environment.apiUrl}/api/processos/`, {
         movimento: name,
@@ -58,8 +63,13 @@ export class AnalysisApi {
               movimentos: caseItem.pinnedMovimentoCount,
             })
           );
+          this.loadingService.setLoadingState(false);
+
           return transformedData;
         })
+        // finalize(() => {
+        //   this.loadingService.setLoadingState(false);
+        // })
       );
   }
 

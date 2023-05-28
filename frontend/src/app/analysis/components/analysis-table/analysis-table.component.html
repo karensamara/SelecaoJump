@@ -1,47 +1,50 @@
 <mat-card id="app-analysis-table">
-  <table mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="NPU">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>NPU</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.NPU }}
-      </td>
-    </ng-container>
+  <mat-progress-spinner *ngIf="isLoading" mode="indeterminate">
+  </mat-progress-spinner>
+  <ng-container *ngIf="!isLoading">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="NPU">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>NPU</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.NPU }}
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="movimentos">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ocorrências</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.movimentos }}
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="movimentos">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Ocorrências</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.movimentos }}
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="totalMovimentos">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        Qt. total de movimentos
-      </th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.totalMovimentos }}
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="totalMovimentos">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Qt. total de movimentos
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.totalMovimentos }}
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="duration">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>
-        Duração do processo
-      </th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.totalDuration }}
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="duration">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Duração do processo
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.totalDuration }}
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr
-      mat-row
-      class="row"
-      *matRowDef="let row; columns: displayedColumns"
-    ></tr>
-  </table>
-
-  <mat-paginator
-    [length]="data.length"
-    [pageSizeOptions]="[10, 25, 100]"
-  ></mat-paginator>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        class="row"
+        *matRowDef="let row; columns: displayedColumns"
+      ></tr>
+    </table>
+    <mat-paginator
+      [length]="data.length"
+      [pageSizeOptions]="[10, 25, 100]"
+    ></mat-paginator>
+  </ng-container>
 </mat-card>
