@@ -26,12 +26,13 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="duration">
+      <!-- HERE -->
+      <ng-container matColumnDef="totalDuration">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           Duração do processo
         </th>
         <td mat-cell *matCellDef="let element">
-          {{ element.totalDuration }}
+          {{ convertSecondsToMonthsAndDays(element.totalDuration) }}
         </td>
       </ng-container>
 

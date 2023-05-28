@@ -20,10 +20,12 @@ export class AnalysisComponent {
     facade.getProcessoData().subscribe((processoData) => {
       this.processoList = processoData;
     });
+    console.log('constructor');
   }
   ngOnInit(): void {
     const analysisInitializerFn = analysisInitializerFunc(this.facade);
     analysisInitializerFn();
+    console.log('initializer');
 
     this.selectedMovimento = `${this.dataSharingService.getMovimentoValue()}`;
     // this.appRef.isStable.subscribe(() => {

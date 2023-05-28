@@ -47,7 +47,6 @@ export class StatisticsComponent {
         // console.log(this.statistics.avgMovimentoDuration);
       },
       (error) => {
-        // Error handling
         console.error('Error retrieving statistics:', error);
       }
     );

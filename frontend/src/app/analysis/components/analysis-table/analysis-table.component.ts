@@ -28,7 +28,7 @@ export class AnalysisTableComponent
     'NPU',
     'movimentos',
     'totalMovimentos',
-    'duration',
+    'totalDuration',
   ];
 
   dataSource!: MatTableDataSource<Processo>;
@@ -66,5 +66,19 @@ export class AnalysisTableComponent
 
     // this.dataSource.paginator = this.paginator;
     setTimeout(() => (this.dataSource.paginator = this.paginator));
+  }
+  convertSecondsToMonthsAndDays(seconds: number): string {
+    const secondsInDay = 24 * 60 * 60;
+    const secondsInMonth = secondsInDay * 30;
+
+    const months = Math.floor(seconds / secondsInMonth);
+    const remainingSeconds = seconds % secondsInMonth;
+    const days = Math.floor(remainingSeconds / secondsInDay);
+    if (months === 0 && days === 0) {
+      return `Instantâneo`;
+    }
+    const monthsString = months === 1 ? 'mês' : 'meses';
+    const daysString = days === 1 ? 'dia' : 'dias';
+    return `${months} ${monthsString} e ${days} ${daysString}`;
   }
 }

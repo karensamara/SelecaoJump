@@ -15,12 +15,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
-  providers: [
-    AnalysisState,
-    AnalysisApi,
-    AnalysisFacade,
-    analysisInitializerProvider,
-  ],
+  providers: [AnalysisState, AnalysisApi, AnalysisFacade],
   declarations: [AnalysisComponent, AnalysisTableComponent],
   imports: [
     CommonModule,
