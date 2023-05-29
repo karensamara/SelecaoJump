@@ -1,6 +1,8 @@
 <mat-card id="app-analysis-table">
-  <mat-progress-spinner *ngIf="isLoading" mode="indeterminate">
-  </mat-progress-spinner>
+  <div class="spinner-container">
+    <mat-progress-spinner *ngIf="isLoading" mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
   <ng-container *ngIf="!isLoading">
     <table mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="NPU">
