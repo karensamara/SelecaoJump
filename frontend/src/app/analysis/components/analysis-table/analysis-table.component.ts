@@ -6,7 +6,6 @@ import {
   AfterViewInit,
   OnInit,
   OnChanges,
-  ElementRef,
 } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -32,9 +31,8 @@ export class AnalysisTableComponent
   ];
 
   dataSource!: MatTableDataSource<Processo>;
-  // isLoading!: boolean;
-  @ViewChild(MatSort) sort!: MatSort;
 
+  @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
   constructor(private loadingService: LoadingService) {}
@@ -45,26 +43,17 @@ export class AnalysisTableComponent
   ngOnInit(): void {
     const data = Object.assign([], this.data);
     this.dataSource = new MatTableDataSource(data);
-
-    // this.isLoading = this.loadingService.isLoading;
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => (this.dataSource.sort = this.sort));
-    // this.dataSource.paginator = this.paginator;
     setTimeout(() => (this.dataSource.paginator = this.paginator));
-
-    // TODO: Fix paginator
-    // TODO: Sort not working on movimentos/totalMovimentos
   }
 
   ngOnChanges(): void {
     const data = Object.assign([], this.data);
     this.dataSource = new MatTableDataSource(data);
-    // this.dataSource.sort = this.sort;
     setTimeout(() => (this.dataSource.sort = this.sort));
-
-    // this.dataSource.paginator = this.paginator;
     setTimeout(() => (this.dataSource.paginator = this.paginator));
   }
   convertSecondsToMonthsAndDays(seconds: number): string {

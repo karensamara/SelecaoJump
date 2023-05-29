@@ -4,7 +4,6 @@ import { AnalysisComponent } from './pages/analysis/analysis.component';
 import { AnalysisState } from './state/analysis-state/analysis.state';
 import { AnalysisApi } from './api/analysis.api';
 import { AnalysisFacade } from './analysis.facade';
-import { analysisInitializerProvider } from './analysis.initializer';
 import { AnalysisRoutingModule } from './analysis-routing.module';
 import { AnalysisTableComponent } from './components/analysis-table/analysis-table.component';
 import { MatCardModule } from '@angular/material/card';

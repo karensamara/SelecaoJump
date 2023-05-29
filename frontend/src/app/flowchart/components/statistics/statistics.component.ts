@@ -23,7 +23,6 @@ export class StatisticsComponent {
   getStatistics(): void {
     this.http.get<any>(`${environment.apiUrl}/api/processos/stats`).subscribe(
       (response) => {
-        console.log(response);
         this.statistics = response[0];
 
         const secondsInAMonth = 2592000; // assuming 30 days per month
@@ -43,8 +42,6 @@ export class StatisticsComponent {
         this.avgMovimentoDurationHours = Math.floor(
           remainingSecondsMovimento / 3600
         );
-
-        // console.log(this.statistics.avgMovimentoDuration);
       },
       (error) => {
         console.error('Error retrieving statistics:', error);

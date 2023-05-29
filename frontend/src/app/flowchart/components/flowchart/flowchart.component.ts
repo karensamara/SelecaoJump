@@ -53,7 +53,6 @@ export class FlowchartComponent implements OnInit {
 
   addInfoIconToNodes(): void {
     const nodes = d3.selectAll('.node');
-    console.log(nodes);
     const componentInstance = this;
     nodes.each(function () {
       const node = d3
@@ -65,7 +64,6 @@ export class FlowchartComponent implements OnInit {
           componentInstance.dataSharingService.setMovimentoValue(value);
 
           componentInstance.router.navigate(['/analysis']);
-          console.log(value);
         })
         .style('cursor', 'pointer');
 
@@ -76,10 +74,6 @@ export class FlowchartComponent implements OnInit {
           const x = parseFloat(node.select('text').attr('x'));
           const y = parseFloat(node.select('text').attr('y'));
           return `translate(${x + -60},${y + 4})`;
-        })
-        .on('click', function () {
-          console.log('clicked');
-          // componentInstance.dataSharingService.setResponseValue('test');
         })
         .style('cursor', 'pointer');
 

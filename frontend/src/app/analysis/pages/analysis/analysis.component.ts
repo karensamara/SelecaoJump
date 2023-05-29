@@ -1,4 +1,4 @@
-import { ApplicationRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { AnalysisFacade } from '../../analysis.facade';
 import { Processo } from '../../types/Processo';
 import { ProcessSharingService } from 'src/app/shared/services/process-sharing.service';
@@ -20,21 +20,11 @@ export class AnalysisComponent {
     facade.getProcessoData().subscribe((processoData) => {
       this.processoList = processoData;
     });
-    console.log('constructor');
   }
   ngOnInit(): void {
     const analysisInitializerFn = analysisInitializerFunc(this.facade);
     analysisInitializerFn();
-    console.log('initializer');
 
     this.selectedMovimento = `${this.dataSharingService.getMovimentoValue()}`;
-    // this.appRef.isStable.subscribe(() => {
-    //   const analysisInitializerFn = analysisInitializerFunc(this.facade);
-    //   analysisInitializerFn();
-    // });
-    // this.facade.getProcessoData().subscribe((processoData) => {
-    //   this.processoList = processoData;
-    //   console.log(this.processoList);
-    // });
   }
 }

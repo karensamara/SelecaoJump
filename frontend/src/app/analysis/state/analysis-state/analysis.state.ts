@@ -11,7 +11,6 @@ export class AnalysisState {
   }
 
   public setProcessoData(processoData: Processo[]) {
-    console.log('state', processoData);
     this.processoData.next(processoData);
   }
 }

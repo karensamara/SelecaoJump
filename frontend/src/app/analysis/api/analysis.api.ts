@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Processo } from '../types/Processo';
-import { map, of, finalize } from 'rxjs';
+import { map, of } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 
@@ -67,36 +67,6 @@ export class AnalysisApi {
 
           return transformedData;
         })
-        // finalize(() => {
-        //   this.loadingService.setLoadingState(false);
-        // })
       );
   }
-
-  // public fetchProcessosDataByName2(
-  //   name: string,
-  //   pageSize: number,
-  //   pageNumber: number
-  // ) {
-  //   const offset = pageSize * (pageNumber - 1);
-  //   return this.http
-  //     .post<any>(`${environment.apiUrl}/api/processos/`, {
-  //       movimento: name,
-  //       offset: offset,
-  //       limit: pageSize,
-  //     })
-  //     .pipe(
-  //       map((response: any) => {
-  //         const transformedData: Processo[] = response.cases.map(
-  //           (caseItem: any) => ({
-  //             NPU: caseItem.NPU,
-  //             totalMovimentos: caseItem.movimentosCount,
-  //             totalDuration: caseItem.duration,
-  //             movimentos: caseItem.pinnedMovimentoCount,
-  //           })
-  //         );
-  //         return transformedData;
-  //       })
-  //     );
-  // }
 }

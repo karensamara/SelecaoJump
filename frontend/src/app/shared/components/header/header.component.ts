@@ -9,6 +9,5 @@ export class HeaderComponent {
   navVisible: boolean = false;
   toggleNav(): void {
     this.navVisible = !this.navVisible;
-    console.log('oiiiiiiiii');
   }
 }

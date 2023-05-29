@@ -55,7 +55,6 @@ async def get_processos_infos(request: ProcessosInfosInput):
     """
     pinned_movimento = request.movimento
     cases, df = [], core_instance.log.copy()
-    # df['duration'] = df[END_TIMESTAMP] - df[START_TIMESTAMP]
 
     for NPU, group in df.groupby(CASE_ID):
         trace_duration = group['duration'].sum()
